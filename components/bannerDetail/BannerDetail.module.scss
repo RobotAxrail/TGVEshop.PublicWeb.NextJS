@@ -1,0 +1,50 @@
+@import "@/styles/mixins.scss";
+
+.details-card {
+  padding: 10px;
+  @include md-up {
+    padding: 10px 50px;
+  }
+  @include lg-up {
+    padding: 30px 110px;
+  }
+  @include xl-up {
+    padding: 30px 150px;
+  }
+  .details-button {
+    overflow: auto;
+    margin: 10px 0;
+    height: calc(100% - 6.5em);
+    @include sm-down {
+      height: calc(100% - 6.5em);
+    }
+  }
+  .details-no-button {
+    overflow: auto;
+    height: calc(100% - 2em);
+    @include sm-down {
+      height: calc(100% - 2em);
+    }
+  }
+    .card-header-text {
+      line-height: 1.5rem;
+      color: #000000;
+      font-weight: 700;
+      font-size: 1.2rem;
+      @include sm-down {
+        font-size: 1.2rem;
+      }
+    }
+  .nav_button {
+    margin: 0 1rem 1rem;
+    @include md-up {
+      width: 10rem;
+    }
+    @include lg-up {
+      width: 13rem;
+    }
+    @include xl-up {
+      width: 15rem;
+    }
+  }
+}

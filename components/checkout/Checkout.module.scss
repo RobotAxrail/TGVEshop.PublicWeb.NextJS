@@ -1,0 +1,5 @@
+@import "@/styles/mixins.scss";
+
+.flex-with-gap {
+  @include get-flex-container-with-gap(0.5rem);
+}

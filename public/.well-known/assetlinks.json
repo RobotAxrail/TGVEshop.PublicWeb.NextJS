@@ -1,0 +1,26 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.axrail.acp",
+            "sha256_cert_fingerprints": [
+                "C2:35:FD:53:46:C4:30:BF:FD:EB:3E:D9:27:59:65:81:2A:CB:23:80:7C:E4:EB:3E:B0:77:64:14:38:25:86:30"
+            ]
+        }
+    },
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.axrail.acp.uat",
+            "sha256_cert_fingerprints": [
+                "C2:35:FD:53:46:C4:30:BF:FD:EB:3E:D9:27:59:65:81:2A:CB:23:80:7C:E4:EB:3E:B0:77:64:14:38:25:86:30"
+            ]
+        }
+    }
+]

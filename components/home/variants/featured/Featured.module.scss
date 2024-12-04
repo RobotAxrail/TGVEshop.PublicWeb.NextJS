@@ -1,0 +1,16 @@
+@import "@/styles/mixins.scss";
+
+.container {
+  margin: 10px;
+  margin-top: 20px;
+  img:hover {
+    filter: brightness(97%);
+  }
+
+  @include lg-up {
+    margin-top: 40px;
+  }
+  @include xl-up {
+    margin-top: 40px;
+  }
+}

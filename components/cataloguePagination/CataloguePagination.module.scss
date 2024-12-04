@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 5rem;
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3rem;
+        width: 3rem; 
+        cursor: pointer;
+    }
+    
+    .selected {
+        color: white;
+    }
+        
+    .unselected {
+        color: #878787;
+    }
+}
+
+
+

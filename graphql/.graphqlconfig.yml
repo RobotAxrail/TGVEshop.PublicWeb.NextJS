@@ -1,0 +1,21 @@
+projects:
+  Codegen Project:
+    schemaPath: schema.graphql
+    includes:
+      - ./**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ""
+        docsFilePath: ./
+        region: ap-southeast-1
+        apiId: null
+        frontend: javascript
+        framework: react
+        maxDepth: 5
+        typenameIntrospection: false
+extensions:
+  amplify:
+    version: 3

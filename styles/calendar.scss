@@ -1,0 +1,139 @@
+/* ------- Date input ------- */
+.SingleDatePicker {
+  display: block !important;
+}
+
+.SingleDatePicker_picker {
+  z-index: 1200 !important;
+}
+
+.SingleDatePickerInput {
+  width: 100%;
+  border-radius: 2px;
+  .DateInput {
+    width: calc(100% - 49px);
+    .DateInput_input {
+      height: 3rem;
+      font-weight: inherit;
+      font-size: inherit;
+      border-bottom: 0;
+      width: 100%;
+    }
+  }
+  .DayPicker__withBorder {
+    > div > div {
+      .DayPicker_weekHeaders {
+        .DayPicker_weekHeader {
+          top: 100px !important;
+        }
+      }
+    }
+  }
+  .month-year-inputs {
+    width: calc(100% - 49px);
+  }
+}
+
+.DayPicker_portal__horizontal {
+  width: 90% !important;
+  max-width: 319px !important;
+  margin: auto !important;
+  position: relative !important;
+  left: 0 !important ;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  > div > div {
+    width: 100% !important;
+  }
+}
+
+.DayPickerNavigation_button {
+  border-radius: 5px;
+  .next,
+  .prev {
+    position: absolute;
+    top: 35px;
+    padding: 3px 6px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+  }
+  .prev {
+    left: 12px;
+  }
+  .next {
+    right: 12px;
+  }
+  .icon {
+    width: 15px;
+    height: 12px;
+  }
+}
+
+.CalendarMonth_caption {
+  padding: 25px 0 50px;
+}
+
+.DayPicker_weekHeaders__horizontal {
+  .DayPicker_weekHeader {
+    width: 100%;
+  }
+}
+
+.DayPicker_weekHeader_ul {
+  display: flex;
+  justify-content: space-around;
+}
+.DayPicker_weekHeader_li {
+  width: auto !important;
+}
+.DayPicker_transitionContainer__horizontal {
+  width: 100% !important;
+}
+.CalendarMonthGrid__horizontal {
+  width: auto !important;
+}
+.CalendarMonthGrid_month__horizontal {
+  width: 100%;
+}
+
+// NOTE: the order of these styles DO matter
+.CalendarMonth_table {
+  width: 100%;
+}
+.CalendarDay__default {
+  border: 0 !important;
+  border-radius: 100% !important;
+  width: auto !important;
+}
+.CalendarDay__default:hover {
+  border: 0;
+}
+
+// Will edit everything selected including everything between a range of dates
+.CalendarDay__selected_span {
+  background: var(--main-bg-color) !important; //background
+  color: white !important; //text
+  border: 0 !important; //default styles include a border
+}
+
+// Will edit selected date or the endpoints of a range of dates
+.CalendarDay__selected {
+  background: var(--main-bg-color) !important;
+  color: white !important;
+  border: 0 !important;
+}
+
+// Will edit when hovered over. _span style also has this property
+.CalendarDay__selected:hover {
+  background: var(--main-bg-color) !important;
+  color: white !important;
+}
+
+// Will edit when the second date (end date) in a range of dates
+// is not yet selected. Edits the dates between your mouse and said date
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background: inherit;
+}

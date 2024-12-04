@@ -1,0 +1,69 @@
+@import "@/styles/responsive.scss";
+
+.h3 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.address {
+  > :first-child {
+    font-weight: bold;
+  }
+}
+
+.form {
+  background-color: #f2f2f2;
+
+  h2 {
+    margin: 10px 0;
+  }
+  label:before {
+    content: "* ";
+    color: tomato;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  div,
+  button {
+    margin: 20px auto;
+  }
+  p {
+    margin: 0 auto 10px;
+    color: tomato;
+  }
+  input,
+  textarea {
+    height: 45px;
+    padding: 10px 15px;
+    background-color: white;
+  }
+
+  input:disabled,
+  textarea:disabled {
+    color: lightGrey;
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+  }
+  button {
+    display: block;
+  }
+  button:hover {
+    text-decoration: underline;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 240px;
+  @include desktop {
+    height: 400px;
+  }
+  @include tablet {
+    height: 400px;
+  }
+
+}

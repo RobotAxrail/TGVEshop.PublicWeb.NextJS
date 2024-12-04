@@ -1,0 +1,197 @@
+.text-input-container {
+  label {
+    pointer-events: none;
+    transform: translate(12px, 18px) scale(1);
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+      transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+  input:focus + label {
+    color: var(--main-bg-color);
+  }
+  input:focus + label,
+  input:not([value=""]) + label {
+    transform: translate(12px, 10px) scale(0.75);
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+      transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+}
+
+.checkbox {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.checkbox-icon {
+  fill: none;
+  stroke-width: 3;
+  stroke: white;
+  vertical-align: top;
+}
+
+.rect-text-input-container {
+  label {
+    width: fit-content;
+    transform: translate(8px, -7px) scale(0.75);
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+      transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  }
+  input:focus + div + label,
+  .select-focus + div + label,
+  .select-normal:focus + div + label,
+  div:focus-within + div + label {
+    color: var(--main-bg-color);
+  }
+  input:hover:not(:disabled):not(:focus) + div,
+  .select-normal:hover:not(:disabled):not(:focus) + div,
+  div:hover:not(:focus-within) + div {
+    border-width: 1px;
+    border-color: black;
+  }
+  input:focus + div,
+  .select-focus + div,
+  .select-normal:focus + div,
+  div:focus-within + div {
+    border-width: 2px;
+    border-color: var(--main-bg-color);
+  }
+
+  .border-container {
+    &[contentEditable="true"]:empty:not(:focus):before {
+      content: attr(placeholder);
+      color: rgb(156, 163, 175);
+    }
+  }
+}
+
+.default {
+  min-height: inherit;
+  :global {
+    .react-tel-input {
+      min-height: inherit;
+
+      .form-control {
+        min-height: inherit;
+        width: 100%;
+        border: none;
+      }
+      .flag-dropdown {
+        border: none;
+      }
+    }
+    .react-tel-input :disabled {
+      color: rgb(156, 163, 175);
+    }
+  }
+}
+
+.border-class {
+  :global {
+    .react-tel-input {
+      .form-control {
+        border-radius: 30px !important;
+        border: 0.5px solid #d8d8d8 !important;
+      }
+
+      .selected-flag,
+      .flag-dropdown {
+        border-radius: 30px 0 0 30px !important;
+        border: 0.5px solid #d8d8d8 !important;
+      }
+    }
+  }
+}
+
+// .border-container:focus {
+//   outline: solid 2px $primary;
+// }
+
+// .border-container:focus + label {
+//   color: $primary;
+// }
+
+.label {
+  background: -webkit-linear-gradient(
+    rgba(246, 247, 248, 1) 45%,
+    rgba(255, 255, 255, 1) 45%
+  );
+  background: -moz-linear-gradient(
+    rgba(246, 247, 248, 1) 45%,
+    rgba(255, 255, 255, 1) 45%
+  );
+  background: -o-linear-gradient(
+    rgba(246, 247, 248, 1) 45%,
+    rgba(255, 255, 255, 1) 45%
+  );
+  background: linear-gradient(
+    rgba(246, 247, 248, 1) 45%,
+    rgba(255, 255, 255, 1) 45%
+  );
+}
+
+.animated-checkbox {
+  input[type="checkbox"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+.radio-button {
+  &:checked,
+  &:not(:checked) {
+    position: absolute;
+    left: -9999px;
+  }
+  &:checked + label,
+  &:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: theme("colors.gray.200");
+  }
+  &:checked + label:before,
+  &:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid theme("colors.gray.400");
+    border-radius: 100%;
+    background: #fff;
+  }
+  &:checked + label:after,
+  &:not(:checked) + label:after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: theme("colors.primary");
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -39%;
+    margin-top: -25%;
+    // transform: translate(-50%, -30%);
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  &:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  &:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

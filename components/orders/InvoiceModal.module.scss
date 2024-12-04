@@ -1,0 +1,14 @@
+.invoice_modal {
+  .print-content {
+    max-height: 60vh;
+    overflow: auto;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+
+    @media print {
+      @page {
+        size: landscape;
+      }
+    }
+  }
+}

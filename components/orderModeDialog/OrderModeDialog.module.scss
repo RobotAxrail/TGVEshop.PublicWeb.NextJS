@@ -1,0 +1,26 @@
+@import "@/styles/mixins.scss";
+
+.order_mode_modal {
+  min-height: 50px;
+  max-height: 60vh;
+  .modal-content {
+    max-height: 60vh;
+    min-height: 600px;
+    overflow: auto;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
+
+  .modal-selection-address {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}
+
+.flex-with-gap {
+  @include get-flex-container-with-gap(0.5rem);
+}

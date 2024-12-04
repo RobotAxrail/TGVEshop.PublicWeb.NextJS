@@ -1,0 +1,122 @@
+@import "@/styles/index.scss";
+@import "@/styles/mixins.scss";
+
+.image-gallery {
+  max-width: 450px;
+
+  @include sm-down {
+    max-width: 300px;
+    max-height: 100%;
+  }
+  @media (max-width: 650px) {
+    max-width: 450px;
+  }
+  :global {
+    .image-gallery-icon {
+    .image-gallery-svg {
+      height: 60px;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $primary;
+        .image-gallery-svg {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+
+  .image-gallery-slides {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 650px) {
+      height: 400px;
+    }
+    @media (max-width: 650px) {
+      height: 80vw;
+    }
+  }
+
+  .image-gallery-slide, .image-gallery-image {  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: unset;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .image-gallery-bullets {
+    .image-gallery-bullet {
+      box-shadow: none;
+      border-color: $secondary-inactive;
+      background: $secondary-inactive;
+      padding: 3px;
+      &:focus {
+        transform: scale(1);
+        border-color: $secondary-inactive;
+        background: $secondary-inactive;
+      }
+
+      &.active {
+        transform: scale(1);
+        border-color: $secondary;
+        background: $secondary;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          border-color: $secondary-inactive;
+          background: $secondary-inactive;
+        }
+
+        &.active:hover {
+          border-color: $secondary-inactive;
+          background: $secondary-inactive;
+        }
+      }
+    }
+  }
+  }
+  
+}
+
+.image-gallery-thumbnail {
+  &.active,
+  &:focus {
+    border-color: $primary;
+  }
+  
+  // padding: 20px;
+  // gap: 80px;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}
+
+.image-gallery-thumbnail-one {
+  &.active,
+  &:focus {
+    border-color: #fff;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: #fff;
+    }
+  }
+}
+.no-image-container {
+  height: 300px;
+  width: 100%;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

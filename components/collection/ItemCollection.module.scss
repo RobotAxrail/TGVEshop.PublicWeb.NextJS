@@ -1,0 +1,47 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/index.scss";
+
+ .container {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media only screen and (min-width: 650px) and (max-width: 1010px) {
+    > * {
+      width: 32.665%;
+      margin-left: 1%;
+      margin-bottom: 1%;
+    }
+    > :nth-child(3n - 2) {
+      margin-left: 0%;
+    }
+  }
+  @media only screen and (min-width: 1011px) {
+    > * {
+      width: 24.25%;
+      margin-left: 1%;
+      margin-bottom: 1%;
+    }
+    > :nth-child(4n - 3) {
+      margin-left: 0%;
+    }
+  }
+  @media only screen and (min-width: 279px) and (max-width: 650px) {
+    > * {
+      width: 49%;
+      margin-left: 1%;
+      margin-bottom: 1%;
+    }
+    > :nth-child(2n - 1) {
+      margin-left: 0%;
+    }
+  }
+  @media only screen and (max-width: 279px) {
+    > * {
+      width: 100%;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+  }
+ }
+
+ 

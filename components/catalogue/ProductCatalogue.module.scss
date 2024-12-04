@@ -1,0 +1,66 @@
+@import "@/styles/mixins.scss";
+
+.right-node {
+  width: 100%;
+}
+
+.category-title {
+  margin-bottom: 0.6rem;
+  @include md-up {
+    margin-bottom: 2rem;
+  }
+  font-size: 20px;
+  @include sm-up {
+    font-size: 26px;
+  }
+}
+
+.sort {
+  // same margin-bottom as category-title
+  // in case sort container wrapped under title
+  margin-bottom: 0.6rem;
+  @include md-up {
+    margin-bottom: 2rem;
+  }
+}
+
+.sort-select {
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAcUlEQVRIie2TQQqAIBAAp+3dPaCieze79cw6tIIEhqtGBM7JgzujoNBo/I4BmADJmBVgVkeUBTgAZ4yIzhzqiNIBq27cgT5RvlkOZomY5ZZItjwlUix/ilSTe8IX4m7rYrknvEl1uUe4PuH4hrzR+JAT8Xklz2hN5jkAAAAASUVORK5CYII=);
+  background-position: right 0.75rem center;
+  background-size: 16px 16px;
+}
+
+@include sm-down {
+  .container {
+    margin: 20px 10px;
+  }
+}
+
+@include sm-up {
+  .container {
+    margin: 20px 10px;
+  }
+}
+
+@include md-up {
+  .container {
+    flex-direction: column;
+    height: auto;
+    margin: 30px 50px;
+  }
+  .right-node {
+    width: auto;
+  }
+}
+
+@include lg-up {
+  .container {
+    margin: 30px 90px;
+  }
+}
+@include xl-up {
+  .container {
+    margin: 30px 150px;
+  }
+}

@@ -1,0 +1,4 @@
+.noScrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+  scrollbar-width: none;
+}

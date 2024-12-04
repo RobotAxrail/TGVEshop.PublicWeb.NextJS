@@ -1,0 +1,20 @@
+[
+  {
+    "avatar": "",
+    "name": "John Doe",
+    "rating": 4.5,
+    "review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+  },
+  {
+    "avatar": "",
+    "name": "Eveline Gosok",
+    "rating": 4.3,
+    "review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+  },
+  {
+    "avatar": "",
+    "name": "Anne Okombo",
+    "rating": 4.2,
+    "review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+  }
+]

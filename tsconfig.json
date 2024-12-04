@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/graphql/*": ["graphql/*"],
+      "@/utils/*": ["utils/*"],
+      "@/contexts/*": ["contexts/*"],
+      "@/styles/*": ["styles/*"],
+      "@/images/*": ["public/assets/images/*"],
+      "@/enums/*": ["enums/*"],
+      "@/languages/*": ["public/assets/languages/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/states/*": ["states/*"],
+      "@/lottie/*": ["public/assets/lottie/*"],
+      "@/validation/*": ["validation/*"],
+      "@/apis/*": ["apis/*"],
+      "@/types/*": ["types/*"]
+    },
+    "target": "es5",
+    "downlevelIteration": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

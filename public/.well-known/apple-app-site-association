@@ -1,0 +1,34 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "36M7488YTS.com.axrail.ecomm.dev",
+        "paths": [
+          "*"
+        ],
+        "appIDs": [
+          "36M7488YTS.com.axrail.ecomm.dev"
+        ],
+        "components": [
+          {
+            "/": "/*"
+          }
+        ]
+      },
+      {
+        "appID": "36M7488YTS.com.axrail.ecomm.uat",
+        "paths": [
+          "*"
+        ],
+        "appIDs": [
+          "36M7488YTS.com.axrail.ecomm.uat"
+        ],
+        "components": [
+          {
+            "/": "/*"
+          }
+        ]
+      }
+    ]
+  }
+}

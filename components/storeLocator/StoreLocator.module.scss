@@ -1,0 +1,149 @@
+@import "@/styles/responsive.scss";
+
+$theme-color: #008CDC;
+$theme-color-lighter: #C9D8FF;
+$background-color: #F5F6F9;
+$text-color: #000000;
+$border-color: #00000029;
+
+.layout {
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 0 10px;
+  overflow: auto;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: $background-color;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.footer-container {
+  width: 100%;
+  height: 75px;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @include desktop {
+    max-width: 400px;
+  }
+  @include tablet {
+    max-width: 400px;
+  }
+}
+
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  gap: 5px;
+  color: gray;
+}
+
+.footer-icon {
+  font-size: 20px;
+  color: gray;
+}
+
+.footer-container .actived {
+  color: $theme-color;
+}
+
+.tag {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: scroll;
+  gap: 1rem;
+}
+
+.tag::-webkit-scrollbar {
+  display: none;
+}
+
+.tag-content {
+  border: 1px solid $theme-color;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: $theme-color;
+}
+
+.tag .actived {
+  background-color: $theme-color;
+  color: aliceblue;
+}
+
+.place-container {
+  padding: 0 10px;
+}
+
+.place-container .place-container-header {
+  background-color: $theme-color-lighter;
+  height: 3rem;
+  padding: 0 0 0 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.place-container .container-title{
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.place-container .place {
+  margin-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+}
+
+.place-container .place .name {
+  font-weight: 600;
+  color: $text-color;
+  // margin-bottom: 5px;
+}
+
+.place-container .place .description {
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.place-container .place .operational{
+  margin-bottom: 5px;
+  color: $theme-color;
+  font-weight: 600;
+}
+
+.place-container .place .button {
+  width: 100%;
+  background-color: $theme-color;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 2.5px;
+  margin: 3px 0 15px 0;
+  border-radius: 1rem;
+  box-shadow: 0 0 #0000;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  text-align: center;
+  :hover{
+    box-shadow: 0 0 #0000;
+    filter: brightness(.95);
+  }
+}

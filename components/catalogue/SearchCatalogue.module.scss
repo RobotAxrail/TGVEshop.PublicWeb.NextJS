@@ -1,0 +1,46 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/index.scss";
+
+.conatainer {
+  margin: 10px 10px 20px;
+  box-sizing: border-box;
+}
+
+.category-title {
+  margin-bottom: 0.6rem;
+
+  span {
+    color: #d8d8d8;
+  }
+
+  @include md-up {
+    margin-bottom: 2rem;
+  }
+  font-size: 20px;
+  @include sm-up {
+    font-size: 26px;
+  }
+}
+
+@include sm-up {
+  .conatainer {
+    margin: 20px 10px 20px;
+  }
+}
+
+@include md-up {
+  .conatainer {
+    margin: 30px 50px;
+  }
+}
+
+@include lg-up {
+  .conatainer {
+    margin: 30px 90px;
+  }
+}
+@include xl-up {
+  .conatainer {
+    margin: 30px 150px;
+  }
+}

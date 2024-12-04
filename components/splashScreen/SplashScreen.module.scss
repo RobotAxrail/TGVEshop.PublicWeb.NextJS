@@ -1,0 +1,27 @@
+.content {
+  -ms-transform: translateY(-50%) translateX(-50.5%);
+  transform: translateY(-50%) translateX(-50.5%);
+}
+
+.carousel {
+  width: 95vw;
+  max-width: 1200px;
+  :global {
+    .alice-carousel__prev-btn-item,
+    .alice-carousel__next-btn-item {
+      color: grey;
+    }
+    .alice-carousel__prev-btn-item:hover,
+    .alice-carousel__next-btn-item:hover {
+      color: white;
+    }
+
+    .alice-carousel__dots-item:not(.__custom) {
+      background-color: grey;
+    }
+    .alice-carousel__dots-item:not(.__custom):hover,
+    .alice-carousel__dots-item:not(.__custom).__active {
+      background-color: white;
+    }
+  }
+}

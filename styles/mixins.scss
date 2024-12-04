@@ -1,0 +1,89 @@
+@mixin xs-down {
+  @media (max-width: 0px) {
+    @content;
+  }
+}
+@mixin xs-up {
+  @media (min-width: 0px) {
+    @content;
+  }
+}
+@mixin xs-only {
+  @media (min-width: 0px) and (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin sm-down {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin sm-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin sm-only {
+  @media (min-width: 600px) and (max-width: 959px) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
+@mixin md-up {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
+@mixin md-only {
+  @media (min-width: 960px) and (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin lg-down {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+@mixin lg-up {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+@mixin lg-only {
+  @media (min-width: 1280px) and (max-width: 1919px) {
+    @content;
+  }
+}
+
+@mixin xl-down {
+  @media (max-width: 1919px) {
+    @content;
+  }
+}
+@mixin xl-up {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+@mixin xl-only {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin get-flex-container-with-gap($gap) {
+  display: flex;
+  margin: calc(-1 * $gap) 0 0 calc(-1 * $gap);
+  width: calc(100% + $gap);
+
+  > * {
+    margin: $gap 0 0 $gap;
+  }
+}

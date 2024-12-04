@@ -1,0 +1,53 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/index.scss";
+
+.container {
+  margin: 20px 0px;
+  display: flex;
+  overflow: hidden;
+}
+.right-node {
+  @include sm-up {
+    padding-left: 2rem;
+  }
+}
+@include xl-down {
+  .container {
+    padding: 0 90px;
+  }
+}
+
+@include lg-down {
+  .container {
+    padding: 0 50px;
+  }
+}
+
+@include md-down {
+  .right-node {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 837px) {
+  .tab-container {
+    padding: 30px 0px;
+  }
+}
+@media (max-width: 650px) {
+  .container {
+    flex-direction: column;
+    margin: 0 10px;
+    padding: 0 20px;
+  }
+  .right-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .tab-container {
+    padding: 30px 10px;
+  }
+}

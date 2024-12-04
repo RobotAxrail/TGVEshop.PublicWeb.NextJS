@@ -1,0 +1,82 @@
+@import "@/styles/mixins.scss";
+
+.container {
+  :global {
+    .alice-carousel__wrapper {
+      width: 100% !important;
+      display: block;
+      margin: 0;
+    }
+    .alice-carousel__stage-item {
+      width: 100% !important;
+    }
+    .alice-carousel__dots {
+      position: absolute;
+        left: 50%;
+        bottom: 16px;
+        margin: 0;
+    }
+
+    ul.alice-carousel__dots {
+      @include xs-only {
+        display: none;
+      }
+    }
+    .alice-carousel__dots-item:not(.__custom):not(:last-child) {
+      margin-right: 8px;
+    }
+
+    .alice-carousel__dots-item:not(.__custom) {
+      background-color: lightgrey;
+      width: 10px;
+      height: 10px;
+    }
+    .alice-carousel__dots-item:not(.__custom):hover,
+    .alice-carousel__dots-item:not(.__custom).__active {
+      background-color: var(--main-bg-color);
+    }
+
+    .alice-carousel__prev-btn,
+    .alice-carousel__next-btn {
+      top: calc(50% - 24px);
+      width: fit-content;
+      border-radius: 50px;
+      position: absolute;
+      padding: 0 28px;
+
+      :hover {
+        border-radius: 50px;
+        opacity: 0.8;
+      }
+
+      @include xs-only {
+        top: calc(50% - 20px);
+        padding: 0 12px;
+      }
+    }
+
+    .alice-carousel__prev-btn {
+      left: 2px;
+    }
+
+    .alice-carousel__next-btn {
+      right: 2px;
+    }
+
+    .alice-carousel__prev-btn-item,
+    .alice-carousel__next-btn-item {
+      padding: 0 7.5px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--main-bg-color) !important;
+      border-radius: 50px;
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .alice-carousel__prev-btn-item.__inactive,
+    .alice-carousel__next-btn-item.__inactive {
+      opacity: 1;
+    }
+  }
+}

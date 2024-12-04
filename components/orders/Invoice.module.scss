@@ -1,0 +1,135 @@
+.Invoice {
+  position: relative;
+  background-color: white;
+  padding: 1rem 2rem;
+  min-width: 50rem;
+
+  .merchant-title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 1.5rem 0;
+  }
+
+  .invoice-container {
+    // border: 0.15rem solid $grey300;
+    margin: 1rem 0 2.5rem;
+    padding: 1.5rem;
+
+    .invoice-title {
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.4rem;
+      margin: 2rem 0;
+    }
+
+    .address {
+      margin-top: 0.5rem;
+      line-height: 1.2rem;
+      max-width: 60%;
+    }
+
+    .item-header {
+      text-align: center;
+    //   background-color: $grey300;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .item-body {
+      text-align: center;
+      font-size: 1rem !important;
+      .item-info {
+        text-align: left;
+      }
+
+      .text-left {
+        text-align: left;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+    }
+
+    .item-total {
+      margin-top: 1rem;
+    //   border-top: 0.15rem solid $grey300;
+    //   border-bottom: 0.15rem solid $grey300;
+    }
+
+    .item-grand-total {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.3rem 0;
+    //   background-color: $grey300;
+    }
+
+    .shipping-tax {
+      padding-right: 1rem;
+    }
+  }
+
+  .tax-summary-container {
+    // border: 0.15rem solid $grey300;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .gratitude-title {
+    font-style: italic;
+    font-size: 1.1rem;
+    // color: $grey600;
+    margin: 1rem 0 0.2rem;
+  }
+
+  .gratitude-subtitle {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    a {
+      color: $primary;
+    }
+  }
+
+  .powered-by {
+    text-align: center;
+    span {
+      font-style: italic;
+    //   color: $grey700;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  }
+
+  .container-footer-total {
+    margin-left: 50px;
+    .invoice-footer-total-item {
+      display: flex;
+      justify-content: space-between;
+      width: 400px;
+      padding: 6px 1.5rem;
+      &:last-child {
+        // background-color: $grey300;
+      }
+
+      .container-invoice-footer-currency {
+        flex-direction: row;
+        margin-right: 1rem;
+        .currency-label {
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

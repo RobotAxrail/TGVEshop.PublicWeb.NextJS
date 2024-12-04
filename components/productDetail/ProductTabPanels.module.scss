@@ -1,0 +1,43 @@
+// @import "@/styles/mixins.scss";
+// @import "@/styles/index.scss";
+
+// .root {
+//   // in productTabPanel
+//   box-shadow: none;
+//   height: 100%;
+//   width: 100%;
+//   max-width: $site-max-width;
+// }
+
+// // in productTabPanel
+// .description-review-tab-box {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 10px 15px;
+// }
+
+// @include xl-down {
+//   .description-review-tab-box {
+//     padding: 0 90px;
+//   }
+// }
+
+// @include lg-down {
+//   .description-review-tab-box {
+//     padding: 0 50px;
+//   }
+// }
+
+// @include md-down {
+//   .root {
+//     width: fit-content;
+//     margin: 0;
+//     margin-left: 10px;
+//   }
+// }
+
+// @media (max-width: 650px) {
+//   .description-review-tab-box {
+//     padding: 0;
+//   }
+// }
