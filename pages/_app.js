@@ -49,6 +49,7 @@ import { LocationProvider } from "@/contexts/LocationContext";
 
 import MerchantContext from "@/contexts/MerchantContext";
 import { CartProvider } from "@/contexts/EShopCartContext";
+import { SearchProvider } from "@/contexts/SearchContext";
 //constants
 import { StoreTypes } from "@/enums/enums";
 
@@ -197,76 +198,86 @@ function MyApp({ Component, pageProps, props }) {
             {process.env.NEXT_PUBLIC_MAINTENANCE ? (
               <Maintenance />
             ) : (
-            
               <MerchantContext.Provider
                 value={{
                   updateMerchantData,
                   ...merchantData,
                 }}
               >
-                  <LocationProvider>
-                <AuthContextProvider>
-                  <StoreOperatingHourContextProvider>
-                    <OrderContextProvider>
-                      <MultiStoreDeliveryProvider>
-                        <CartContextProvider>
-                          <CartProvider>
-                          <WishlistContextProvider>
-                            <SingleStoreFullfilmentContext>
-                              <VoucherStoreProvider>
-                                <Layout
-                                  // setting={props.response}
-                                  setting={{
-                                    siteFont: props.response?.siteFont || "Helvetica",
-                                    siteColor: props.response?.siteColor || "#42a5f5",
-                                    layoutBgColor: props.response?.layoutBgColor || "#111111",
-                                    fontColor: props.response?.fontColor || "#F4F4F5",
-                                  }}
-                                  headerList={headerList}
-                                  footerList={footerList}
-                                  splashScreenList={splashScreenList}
-                                  faqList={faqList}
-                                  contactUsInfo={contactUsInfo}
-                                  routePath={router.route}
-                                  // aCFooterLayout={
-                                  //   props?.aCFooterLayout ||
-                                  //   JSON.parse(
-                                  //     localStorage.getItem("footerLayout")
-                                  //   )
-                                  // }
-                                  // aCAppBarLayout={
-                                  //   props?.aCAppBarLayout ||
-                                  //   JSON.parse(
-                                  //     localStorage.getItem("appBarLayout")
-                                  //   )
-                                  // }
-                                >
-                                  {/* {loading ? <h1>Loading...</h1> : <Component {...pageProps} />} */}
-                                  <PrivateRoute
-                                    protectedRoutes={protectedRoutes}
-                                  >
-                                    <Component
-                                      {...pageProps}
-                                      key={
-                                        router.pathname.includes("search")
-                                          ? router.pathname
-                                          : `${router.asPath}-${new Date()}`
-                                      }
-                                    />
-                                  </PrivateRoute>
-                                </Layout>
-                              </VoucherStoreProvider>
-                            </SingleStoreFullfilmentContext>
-                          </WishlistContextProvider>
-                          </CartProvider>
-                        </CartContextProvider>
-                      </MultiStoreDeliveryProvider>
-                    </OrderContextProvider>
-                  </StoreOperatingHourContextProvider>
-                </AuthContextProvider>
+                <LocationProvider>
+                  <SearchProvider>
+                    <AuthContextProvider>
+                      <StoreOperatingHourContextProvider>
+                        <OrderContextProvider>
+                          <MultiStoreDeliveryProvider>
+                            <CartContextProvider>
+                              <CartProvider>
+                                <WishlistContextProvider>
+                                  <SingleStoreFullfilmentContext>
+                                    <VoucherStoreProvider>
+                                      <Layout
+                                        // setting={props.response}
+                                        setting={{
+                                          siteFont:
+                                            props.response?.siteFont ||
+                                            "Helvetica",
+                                          siteColor:
+                                            props.response?.siteColor ||
+                                            "#42a5f5",
+                                          layoutBgColor:
+                                            props.response?.layoutBgColor ||
+                                            "#111111",
+                                          fontColor:
+                                            props.response?.fontColor ||
+                                            "#F4F4F5",
+                                        }}
+                                        headerList={headerList}
+                                        footerList={footerList}
+                                        splashScreenList={splashScreenList}
+                                        faqList={faqList}
+                                        contactUsInfo={contactUsInfo}
+                                        routePath={router.route}
+                                        // aCFooterLayout={
+                                        //   props?.aCFooterLayout ||
+                                        //   JSON.parse(
+                                        //     localStorage.getItem("footerLayout")
+                                        //   )
+                                        // }
+                                        // aCAppBarLayout={
+                                        //   props?.aCAppBarLayout ||
+                                        //   JSON.parse(
+                                        //     localStorage.getItem("appBarLayout")
+                                        //   )
+                                        // }
+                                      >
+                                        {/* {loading ? <h1>Loading...</h1> : <Component {...pageProps} />} */}
+                                        <PrivateRoute
+                                          protectedRoutes={protectedRoutes}
+                                        >
+                                          <Component
+                                            {...pageProps}
+                                            key={
+                                              router.pathname.includes("search")
+                                                ? router.pathname
+                                                : `${
+                                                    router.asPath
+                                                  }-${new Date()}`
+                                            }
+                                          />
+                                        </PrivateRoute>
+                                      </Layout>
+                                    </VoucherStoreProvider>
+                                  </SingleStoreFullfilmentContext>
+                                </WishlistContextProvider>
+                              </CartProvider>
+                            </CartContextProvider>
+                          </MultiStoreDeliveryProvider>
+                        </OrderContextProvider>
+                      </StoreOperatingHourContextProvider>
+                    </AuthContextProvider>
+                  </SearchProvider>
                 </LocationProvider>
               </MerchantContext.Provider>
-            
             )}
           </IntlProvider>
         </Hydrate>

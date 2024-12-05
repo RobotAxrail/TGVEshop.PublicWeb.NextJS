@@ -1,7 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import MerchantContext from "@/contexts/MerchantContext";
 import { API, graphqlOperation } from "aws-amplify";
-import { getCustomerCarts } from "@/graphql/queries";
+import {
+  getCustomerCarts,
+  getCustomerOrderPaymentMessage,
+} from "@/graphql/queries";
 import Cookies from "universal-cookie";
 
 import {
@@ -9,17 +12,22 @@ import {
   checkCartLimit,
   placeCustomerOrderToSQS,
 } from "@/graphql/mutations";
+import { useMutation } from "@tanstack/react-query";
 
 interface CartContextType {
   cart: any[];
   fetchCheckCart: (cartIds: string[]) => void;
   customerCart: any[];
+  triggerCheckout: () => void;
+  isCheckoutLoading: boolean;
 }
 
 const CartContext = createContext<CartContextType>({
   cart: [],
   fetchCheckCart: () => {},
   customerCart: [],
+  triggerCheckout: () => {},
+  isCheckoutLoading: false,
 });
 
 interface CartProviderProps {
@@ -34,8 +42,8 @@ type CheckCartResponse = {
       cartItems: Record<string, any>[];
       subtotal: number;
       subtotalWithTax: number;
-    }
-  }
+    };
+  };
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
@@ -110,11 +118,91 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       setIsLoading(false);
     }
   };
+  // console.log(cart)
+  console.log(cart);
+  // Checkout Cart
+  const { mutate: triggerCheckout, isLoading: isCheckoutLoading } = useMutation(
+    {
+      mutationKey: ["trigger checkout"],
+      mutationFn: async () => {
+        let params = {
+          billingCountry: "",
+          // deliveryLongitude: deliveryAddress?.selectedLatLng?.lng,
+          // deliveryLatitude: deliveryAddress?.selectedLatLng?.lat,
+          customerMobileNo: `60123123123`,
+          deliveryPostalCode: "58000",
+          deliveryCountry: "",
+          deliveryAddress: "Menara MBMR",
+          deliveryCity: "Kuala Lumpur",
+          accessToken: "",
+          deliveryState: "Kuala Lumpur",
+          salesChannelName: "Online Store",
+          billingPostalCode: "58000",
+          customerFavouriteAddressId: "",
+          customerFavouritePaymentId: "",
+          paymentType: "",
+          storeId: merchantInfoContext?.storeId,
+          customerPrimaryEmail: "asdf@axrail.com",
+          customerAccountNo: "",
+          deliveryOptionSelected: "",
+          isCustomerSignedIn: "",
+          platform: "ecommerce",
+          requiredCutlery: "",
+          noteToRider: "",
+          storeName: "",
+          // promoCode,
+          // scheduledDateTime,
+          customerFirstName: "ant",
+          customerLastName: "man",
+          customerCartIds: cart.map((item) => item?.customerCartId),
+          isAdvancedOrder: false,
+          billingAddress: "Menara MBMR",
+          billingState: "Kuala Lumpur",
+          billingCity: "Kuala Lumpur",
+          // tableNumber,
+          // customerId,
+          orderType: "pickup",
+          remarks: "",
+          // scheduledDate: scheduledDate,
+          // scheduledTime: scheduledTime,
+          // truckCapacityId: truckCapacityId,
+          // paymentMethod,
+          // voucherCode: (currentVoucher as any)?.voucherId,
+          // voucherExpiryDate: (currentVoucher as any)?.expiryDate,
+        };
+        const { data } = (await API.graphql(
+          graphqlOperation(placeCustomerOrderToSQS, params)
+        )) as any;
+        console.log("get payment details", data?.placeCustomerOrderToSQS);
+        if (data?.placeCustomerOrderToSQS?.messageId) {
+          await checkOutPayment(data?.placeCustomerOrderToSQS?.messageId);
+        }
+        return data?.placeCustomerOrderToSQS;
+      },
+    }
+  );
+
+  const checkOutPayment = async (checkOutId: string) => {
+    let params = {
+      accessToken: "",
+      messageId: checkOutId,
+    };
+    const { data } = (await API.graphql(
+      graphqlOperation(getCustomerOrderPaymentMessage, params)
+    )) as any;
+    console.log("payment redirect", data?.getCustomerOrderPaymentMessage);
+    if (data?.getCustomerOrderPaymentMessage?.gatewayPaymentUrl) {
+      const url = `${data?.getCustomerOrderPaymentMessage?.gatewayPaymentUrl}?${data?.getCustomerOrderPaymentMessage?.gatewayPaymentParams}`;
+      window.location.assign(url);
+    }
+  };
 
   const value = {
     cart,
     fetchCheckCart,
     customerCart,
+    triggerCheckout,
+    isCheckoutLoading,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

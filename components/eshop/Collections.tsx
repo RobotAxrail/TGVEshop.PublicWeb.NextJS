@@ -24,7 +24,8 @@ interface getHomeScreen{
   };
 }
 
-const Collections = ({ searchQuery }) => {
+// const Collections = ({ searchQuery }) => {
+const Collections = () => {
   const router = useRouter();
   const merchantInfoContext = useContext(MerchantContext);
   const [isDesktop, setIsDesktop] = useState(false); // To detect screen size
@@ -120,17 +121,17 @@ const Collections = ({ searchQuery }) => {
             collection.homeCollectionTitle === selectedCategory
           : true
       )
-      .map((collection) => ({
-        ...collection,
-        items: collection.items.filter((item) =>
-          searchQuery
-            ? item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              (item.description?.toLowerCase() || "").includes(
-                searchQuery.toLowerCase()
-              )
-            : true
-        ),
-      }))
+      // .map((collection) => ({
+      //   ...collection,
+      //   items: collection.items.filter((item) =>
+      //     searchQuery
+      //       ? item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      //         (item.description?.toLowerCase() || "").includes(
+      //           searchQuery.toLowerCase()
+      //         )
+      //       : true
+      //   ),
+      // }))
       .filter((collection) => collection.items.length > 0) : [];
 
   const LoadingSkeleton = () => (

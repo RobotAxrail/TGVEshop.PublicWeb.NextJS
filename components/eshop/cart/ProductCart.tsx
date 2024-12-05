@@ -72,7 +72,7 @@ const ProductCart = ({ voucher, orderType }) => {
 
       // Pass only the cart IDs
       router.push({
-        pathname: "/eshop/confirmation",
+        pathname: "/eshop/checkout",
         query: {
           cartIds: JSON.stringify(selectedCartIds),
         },
@@ -92,7 +92,6 @@ const ProductCart = ({ voucher, orderType }) => {
       let res = await API.graphql(
         graphqlOperation(getCustomerVoucherList, params)
       );
-      console.log("fetch voucher listings", res);
     } catch (error) {
       console.error("Error fetching voucher listings", error);
     }
