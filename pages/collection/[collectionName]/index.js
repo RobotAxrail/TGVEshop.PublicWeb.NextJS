@@ -8,7 +8,7 @@ import ProductCatalogue from "@/components/catalogue/ProductCatalogue";
 import SEO from "@/components/seo/SEO";
 
 // Mock Data
-import { mockGraphQLAPI as API } from './mockCollectionData';
+
 const graphqlOperation = (query, params) => params;
 
 import Cookies from "universal-cookie";
