@@ -8,8 +8,7 @@ export default function CounterItem({
   min = 1,
   value,
   max,
-  customLogicInputOnChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setV(e.target.value as any),
+  customLogicInputOnChange,
 }: {
   onChange: (v: number) => void;
   buttonDisabled?: boolean;

@@ -35,6 +35,48 @@ import { useCart } from "@/contexts/EShopCartContext";
 
 
 // Mock Product Details (static data for testing purposes)
+type GetCustomerCartsResponse = {
+  data: {
+    getCustomerCarts: {
+      items: any[]; // Replace with your item type
+      message: string;
+      status: string;
+    }
+  }
+};
+
+
+type GetProductDetailsResponse = {
+  data: {
+    getProductDetails: {
+      cover: string | null;
+      description: string | null;
+      discountPercentage: number | null;
+      image: string | null;
+      isPreOrder: boolean | null;
+      message: string;
+      modifierGroups: any | null; // Replace with specific type if needed
+      priceComparedAtPriceRange: any | null;
+      priceRange: any | null;
+      productIsDisabled: boolean | null;
+      productUOMs: any | null;
+      status: string;
+      timeslotType: string | null;
+      timeslots: any | null;
+      title: string | null;
+      totalRatings: number | null;
+      totalReviews: number | null;
+      variantName1: string | null;
+      variantName2: string | null;
+      variantName3: string | null;
+      variantValues1: any | null;
+      variantValues2: any | null;
+      variantValues3: any | null;
+      video: string | null;
+    }
+  }
+};
+
 
 // Product Component
 const Product = ({ product }) => {
@@ -62,8 +104,11 @@ const Product = ({ product }) => {
       if (isLocalHost()) {
         params["merchantId"] = merchantInfoContext.merchantId;
       }
-      let res = await API.graphql(graphqlOperation(getCustomerCarts, params));
-      let responseProductItem = res.data.getCustomerCarts.items;
+      const res = (await API.graphql(
+        graphqlOperation(getCustomerCarts, params)
+      )) as GetCustomerCartsResponse;
+      
+      const responseProductItem = res.data.getCustomerCarts.items;
       setCartList(responseProductItem ?? []);
       setIsCartFetching(false);
     } catch (error) {
@@ -95,10 +140,9 @@ const Product = ({ product }) => {
         params["merchantId"] = merchantInfoContext.merchantId;
       }
 
-      const { data } = await API.graphql(
+      const { data } = (await API.graphql(
         graphqlOperation(getProductDetails, params)
-      );
-
+      )) as GetProductDetailsResponse;
       if (data?.getProductDetails?.status === "false") {
         setError("Product not found");
         return;

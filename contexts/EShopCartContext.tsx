@@ -26,6 +26,18 @@ interface CartProviderProps {
   children: React.ReactNode;
 }
 
+type CheckCartResponse = {
+  data: {
+    checkCart: {
+      message: string;
+      status: string;
+      cartItems: Record<string, any>[];
+      subtotal: number;
+      subtotalWithTax: number;
+    }
+  }
+};
+
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const merchantInfoContext = useContext(MerchantContext);
   const cookie = new Cookies();
@@ -86,8 +98,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         truckCapacityIds: "",
       };
 
-      let res = await API.graphql(graphqlOperation(checkCart, params));
-
+      const res = (await API.graphql(
+        graphqlOperation(checkCart, params)
+      )) as CheckCartResponse;
       if (res.data?.checkCart?.cartItems) {
         setCustomerCart(res.data.checkCart.cartItems);
       }

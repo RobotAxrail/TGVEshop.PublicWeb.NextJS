@@ -12,7 +12,7 @@ const awsmobile = {
   "aws_appsync_region": "ap-southeast-1",
   "aws_appsync_authenticationType": "API_KEY",
   "aws_appsync_apiKey": "da2-xmv7amx6nncybjfldnysloes3a",
-  "aws_user_files_s3_bucket": "ecom-webassets-stg",
+  "aws_user_files_s3_bucket": "tgveshop-webassets-dev",
   "aws_user_files_s3_bucket_region": "ap-southeast-1"
 };
 

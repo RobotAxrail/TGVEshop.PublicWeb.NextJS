@@ -22,38 +22,30 @@ import { API, graphqlOperation } from "aws-amplify";
 import { isLocalHost } from "@/utils/util";
 // Mock Data Component
 
+type Banner = {
+  buttonActionValue: string | null;
+  detailPageImage: string | null;
+  homeImage: string | null;
+  isDisabled: boolean | null;
+  landingPageBannerId: string;
+  merchantId: string | null;
+  sequence: number;
+  title: string;
+}
 
-
-const useMockBannerData = () => {
-  return {
+type GetLandingPageBannerResponse = {
+  data: {
     getLandingPageBannerCache: {
-      banners: [
-        {
-          homeImage: mockImage,
-          landingPageBannerId: "banner-001",
-          title: "Gundam",
-        },
-        {
-          homeImage: "/api/placeholder/1920/600",
-          landingPageBannerId: "banner-002",
-          title: "New Arrivals",
-        },
-        {
-          homeImage: "/api/placeholder/1920/600",
-          landingPageBannerId: "banner-003",
-          title: "Clearance Sale",
-        },
-      ],
-      message: "Success",
-      status: 200,
-    },
-  };
+      banners: Banner[];
+      message: string;
+      status: boolean;
+    }
+  }
 };
 
 export default function HomeBannerCarousel() {
   const merchantInfoContext = useContext(MerchantContext);
-  const bannerData = useMockBannerData();
-  const banners = bannerData.getLandingPageBannerCache.banners;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<any>();
   const [bannerDatas, setBannerDatas] = useState(null);
@@ -66,9 +58,9 @@ export default function HomeBannerCarousel() {
         merchantId: merchantInfoContext.merchantId,
       }
 
-      const { data } = await API.graphql(
+      const { data } = (await API.graphql(
         graphqlOperation(getLandingPageBannerCache, isLocalHost() ? params : {})
-      );
+      )) as GetLandingPageBannerResponse;
 
       setBannerDatas(data);
     } catch(error) {
@@ -107,30 +99,7 @@ export default function HomeBannerCarousel() {
   // }, []);
 
 
-  // Auto-advance effect with looping
-  useEffect(() => {
-    if (!api) return;
-
-    const interval = setInterval(() => {
-      if (currentIndex === banners.length - 1) {
-        api.scrollTo(0);
-        setCurrentIndex(0);
-      } else {
-        api.scrollNext();
-      }
-    }, 3000);
-
-    // Update currentIndex when carousel changes
-    api.on("select", () => {
-      setCurrentIndex(api.selectedScrollSnap());
-    });
-
-    // Cleanup interval on component unmount
-    return () => {
-      clearInterval(interval);
-      api.off("select");
-    };
-  }, [api, currentIndex, banners.length]);
+ 
 
 
   if (isLoading || !bannerDatas) {

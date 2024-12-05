@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useEffect, useState } from "react";
+import React,{ useContext, useEffect, useState } from "react";
 
 // components
 import WarungOrderList from "@/components/orders/ewarung/WarungOrderList";
@@ -80,13 +80,13 @@ const OrderListingScreen = () => {
       header: "Payment",
       cell: ({ row }) => {
         return (
-          <>
+          <React.Fragment>
             {row.getValue("paymentMethod")
               ? row.getValue("paymentMethod")
               : row.getValue("manualPaymentMethodName") === "TnG"
                 ? "Touch 'n Go eWallet"
                 : row.getValue("manualPaymentMethodName")}
-          </>
+          </React.Fragment>
         );
       },
     },

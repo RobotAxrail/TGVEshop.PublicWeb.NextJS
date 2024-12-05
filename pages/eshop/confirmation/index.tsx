@@ -42,6 +42,13 @@ import {
 } from "@/graphql/mutations";
 import { useCart } from "@/contexts/EShopCartContext";
 
+type UpdateItemInCustomerCartResponse = {
+  data: {updateItemInCustomerCart: {
+    message: string;
+    status: string;
+  };
+}}
+
 const Confirmation = ({ voucher }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const cookie = new Cookies();
@@ -132,9 +139,9 @@ const Confirmation = ({ voucher }) => {
         quantity,
       };
 
-      const response = await API.graphql(
+      const response = (await API.graphql(
         graphqlOperation(updateItemInCustomerCart, params)
-      );
+      )as UpdateItemInCustomerCartResponse)
 
       // After successful update, refetch cart
       if (response.data?.updateItemInCustomerCart?.status === "true") {
@@ -178,7 +185,7 @@ const Confirmation = ({ voucher }) => {
         <div className="bg-[#292929] px-3 py-4 rounded-[12px] flex flex-col gap-3">
           <div className="flex gap-2">
             <Image src={officebuilding} width={20} height={20} />
-            <p className="font-semibold text-[14px]">{selectedCinema.name}</p>
+            <p>{selectedCinema?.name || 'Select a cinema'}</p>
           </div>
           {/* <div className="flex gap-2">
             <Image src={pickuptime} width={20} height={20} />

@@ -8,6 +8,17 @@ import { API, graphqlOperation } from "aws-amplify";
 import { getCustomerVoucherList } from "@/graphql/queries";
 import { Minus, Plus } from "lucide-react";
 
+type GetCustomerVoucherResponse = {
+  data: {
+    getCustomerVoucherList: {
+      message: string;
+      status: string;
+      totalItem: number;
+      voucherList: Record<string, any>[];
+    }
+  }
+};
+
 const VoucherCart = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [voucherList, setVoucherList] = useState([]);
@@ -38,9 +49,9 @@ const VoucherCart = () => {
         filterType: "",
       };
 
-      let res = await API.graphql(
+      const res = (await API.graphql(
         graphqlOperation(getCustomerVoucherList, params)
-      );
+      )) as GetCustomerVoucherResponse;
       
       if (res.data?.getCustomerVoucherList?.voucherList) {
         const vouchers = res.data.getCustomerVoucherList.voucherList;

@@ -4,6 +4,18 @@ import { API, graphqlOperation } from "aws-amplify";
 import MerchantContext from "@/contexts/MerchantContext";
 import { getCustomerVoucherList, getGiftCardDetail } from "@/graphql/queries";
 
+
+type GetCustomerVoucherResponse = {
+  data: {
+    getCustomerVoucherList: {
+      message: string;
+      status: string;
+      totalItem: number;
+      voucherList: Record<string, any>[];
+    }
+  }
+};
+
 const Vouchers = () => {
   const merchantInfoContext = useContext(MerchantContext);
   const [voucherList, setVoucherList] = useState([]);
@@ -39,9 +51,9 @@ const Vouchers = () => {
         filterType: "",
       };
 
-      let res = await API.graphql(
+      const res = (await API.graphql(
         graphqlOperation(getCustomerVoucherList, params)
-      );
+      )) as GetCustomerVoucherResponse;
       setVoucherList(res.data.getCustomerVoucherList.voucherList);
 
     } catch (error) {

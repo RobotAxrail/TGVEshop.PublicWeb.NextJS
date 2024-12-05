@@ -25,6 +25,19 @@ interface LocationProviderProps {
   children: React.ReactNode;
 }
 
+type GetNearbyStoresResponse = {
+  data: {
+    getNearbyStores: Array<{
+      address: string;
+      name: string;
+      storeId: string;
+      distance: number;
+      // Add other fields as needed
+    }>;
+  }
+};
+
+
 export const LocationProvider: React.FC<LocationProviderProps> = ({
   children,
 }) => {
@@ -51,9 +64,10 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({
         merchantId: merchantInfoContext.merchantId,
         state: address,
       };
-      const { data } = await API.graphql(
+      const { data } = (await API.graphql(
         graphqlOperation(getNearbyStores, params)
-      );
+      )) as GetNearbyStoresResponse;
+      
       setCinemaList(data.getNearbyStores);
     } catch (error) {
       console.error("Error fetching nearest stores", error);

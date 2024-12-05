@@ -11,7 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/Drawer";
+} from "@/components/ui/drawer";
 
 import { add } from "lodash";
 import DeliveryTabs from "../DeliveryTabs";
@@ -44,6 +44,39 @@ interface CartItem {
 interface CollectionCartProps {
   cart: Record<string, CartItem>;
 }
+
+
+type GetProductDetailsResponse = {
+  data: {
+    getProductDetails: {
+      cover: string | null;
+      description: string | null;
+      discountPercentage: number | null;
+      image: string | null;
+      isPreOrder: boolean | null;
+      message: string;
+      modifierGroups: any | null; // Replace with specific type if needed
+      priceComparedAtPriceRange: any | null;
+      priceRange: any | null;
+      productIsDisabled: boolean | null;
+      productUOMs: any | null;
+      status: string;
+      timeslotType: string | null;
+      timeslots: any | null;
+      title: string | null;
+      totalRatings: number | null;
+      totalReviews: number | null;
+      variantName1: string | null;
+      variantName2: string | null;
+      variantName3: string | null;
+      variantValues1: any | null;
+      variantValues2: any | null;
+      variantValues3: any | null;
+      video: string | null;
+    }
+  }
+};
+
 
 const CollectionCart = ({ cart }: CollectionCartProps) => {
   const router = useRouter(); // Initialize useRouter
@@ -92,7 +125,7 @@ const CollectionCart = ({ cart }: CollectionCartProps) => {
         for (const itemId in cart) {
             if (cart.hasOwnProperty(itemId)) {
               const item = cart[itemId]; // Access the cart item using the key
-              const data = await fetchProductDetails(item.seoUrl);
+              const data = (await fetchProductDetails(item.seoUrl) as GetProductDetailsResponse);
               productDetailsList.push(data.data.getProductDetails.productUOMs[0].productUOMId);
               await addItemToCart(data.data.getProductDetails.productUOMs[0].productUOMId, item.quantity, orderType.toLocaleLowerCase());  
               

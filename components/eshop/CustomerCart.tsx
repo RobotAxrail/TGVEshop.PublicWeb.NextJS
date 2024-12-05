@@ -11,7 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/Drawer";
+} from "@/components/ui/drawer";
 import DeliveryTabs from "./DeliveryTabs";
 import { add } from "lodash";
 

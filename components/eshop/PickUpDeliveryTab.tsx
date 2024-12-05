@@ -5,11 +5,10 @@ import * as Switch from "@radix-ui/react-switch";
 import Location from "./Location";
 import { useLocation } from "@/contexts/LocationContext";
 const PickUpDeliveryTab = ({ pickdelivery }) => {
-  const {selectedCinema} = useLocation();
+  const { selectedCinema } = useLocation();
   const [isPickUpNow, setIsPickUpNow] = useState(false);
   const [isLocationDrawerOpen, setIsLocationDrawerOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState("Klang Valley");
-  
 
   const handleLocationSelect = (location: string) => {
     setSelectedLocation(location);
@@ -21,10 +20,9 @@ const PickUpDeliveryTab = ({ pickdelivery }) => {
     setIsLocationDrawerOpen(false);
   };
 
-
   return (
     <div className="w-full flex flex-col gap-5">
-      <h1 className = "font-medium text-[16px]">Choose a pick up time</h1>
+      <h1 className="font-medium text-[16px]">Choose a pick up time</h1>
 
       <div
         className="bg-[#444444] py-4 px-3 rounded-[12px] flex items-center gap-2"
@@ -39,13 +37,17 @@ const PickUpDeliveryTab = ({ pickdelivery }) => {
           />
         </div>
         <div className="flex flex-col gap-[2px]">
-        <h1 className="font-semibold text-[14px]">{selectedCinema.name}</h1>
-        {/* <p className="text-[#D4D4D4] text-[12px]">({selectedCinema.distance})</p> */}
+          <h1 className="font-semibold text-[14px]">
+            {selectedCinema?.name || "Select Cinema"}
+          </h1>
+          {/* <p className="text-[#D4D4D4] text-[12px]">({selectedCinema.distance})</p> */}
         </div>
       </div>
       <div className="bg-[#444444] py-4 px-3 rounded-[12px] flex gap-4 ">
         <div className="flex flex-col gap-1">
-          <h1 className="font-semibold text-[14px]">{pickdelivery ? "Pick up now" : "Delivery ASAP"}</h1>
+          <h1 className="font-semibold text-[14px]">
+            {pickdelivery ? "Pick up now" : "Delivery ASAP"}
+          </h1>
           <p className="text-[#D4D4D4] font-normal text-[12px]">
             {pickdelivery
               ? "Your order will be ready for pick up in 15 minutes. See you!"

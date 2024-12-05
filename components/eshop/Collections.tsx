@@ -14,6 +14,15 @@ import {
 } from "@/graphql/queries";
 import MerchantContext from "@/contexts/MerchantContext";
 import { API, graphqlOperation } from "aws-amplify";
+import Cookies from "universal-cookie";
+
+interface getHomeScreen{
+  data: {
+    getHomeScreenCollectionCache: {
+      collectionsAndItems: any[];
+    };
+  };
+}
 
 const Collections = ({ searchQuery }) => {
   const router = useRouter();
@@ -30,6 +39,7 @@ const Collections = ({ searchQuery }) => {
       },
     },
   });
+  const cookie = new Cookies();
   const getHomeScreenCollectionCacheList = async () => {
     try {
       setIsLoading(true);
@@ -39,12 +49,11 @@ const Collections = ({ searchQuery }) => {
         merchantId: merchantInfoContext.merchantId,
         orderType: merchantInfoContext.orderOption[1].toLocaleLowerCase(),
         storeId: merchantInfoContext.storeId,
-        token: process.env.NEXT_PUBLIC_API_TOKEN,
       };
 
-      const { data } = await API.graphql(
+      const { data } = (await API.graphql(
         graphqlOperation(getHomeScreenCollectionCache, params)
-      );
+      ) as getHomeScreen);
 
       // Keep the data structure consistent
       setHomeScreenCollections({ data });
@@ -75,13 +84,6 @@ const Collections = ({ searchQuery }) => {
   }, [merchantInfoContext]);
 
   // Extract unique categories from mock data
-  const categories1 = [
-    ...new Set(
-      homeScreenCollections.data.getHomeScreenCollectionCache.collectionsAndItems.map(
-        (collection) => collection.homeCollectionTitle
-      )
-    ),
-  ];
 
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -101,8 +103,16 @@ const Collections = ({ searchQuery }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const filteredCollections =
-    homeScreenCollections.data.getHomeScreenCollectionCache.collectionsAndItems
+  useEffect(() => {
+    if (!merchantInfoContext || 
+        !homeScreenCollections?.data?.getHomeScreenCollectionCache?.collectionsAndItems?.length) {
+      return;
+    }
+    getHomeScreenCollectionCacheList();
+  }, [merchantInfoContext]);
+
+  const filteredCollections = homeScreenCollections?.data?.getHomeScreenCollectionCache?.collectionsAndItems?.length 
+  ? homeScreenCollections.data.getHomeScreenCollectionCache.collectionsAndItems
       .filter((collection) =>
         // Only apply category filter if in desktop mode and a category is selected
         isDesktop
@@ -121,7 +131,7 @@ const Collections = ({ searchQuery }) => {
             : true
         ),
       }))
-      .filter((collection) => collection.items.length > 0);
+      .filter((collection) => collection.items.length > 0) : [];
 
   const LoadingSkeleton = () => (
     <div className="flex flex-col gap-6">

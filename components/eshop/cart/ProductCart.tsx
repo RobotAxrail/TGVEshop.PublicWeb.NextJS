@@ -29,6 +29,28 @@ import {
 } from "@/graphql/mutations";
 import { useCart} from "@/contexts/EShopCartContext";
 
+
+type RemoveItemFromCartResponse = {
+  data: {
+    removeItemFromCustomerCart: {
+      message: string;
+      status: string;
+    }
+    
+  }
+};
+
+type GetCustomerCartsResponse = {
+  data: {
+    getCustomerCarts: {
+      items: any[]; // Replace with your specific item type if needed 
+      message: string;
+      status: string;
+    }
+  }
+};
+
+
 const ProductCart = ({ voucher, orderType }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isRemoving, setIsRemoving] = useState(false);
@@ -87,7 +109,9 @@ const ProductCart = ({ voucher, orderType }) => {
         customerId: sessionId,
       };
 
-      let res = await API.graphql(graphqlOperation(getCustomerCarts, params));
+      const res = (await API.graphql(
+        graphqlOperation(getCustomerCarts, params)
+      )) as GetCustomerCartsResponse;
       const cartIds = res.data.getCustomerCarts.items.map(
         (item) => item.customerCartId
       );
@@ -227,9 +251,9 @@ const ProductCart = ({ voucher, orderType }) => {
         merchantId: merchantInfoContext.merchantId,
       };
 
-      const response = await API.graphql(
+      const response = (await API.graphql(
         graphqlOperation(removeItemFromCustomerCart, params)
-      );
+      )as RemoveItemFromCartResponse);
 
       if (response.data?.removeItemFromCustomerCart?.status === "true") {
         // After successful deletion, refetch the cart to update the UI

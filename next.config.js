@@ -90,7 +90,7 @@ const moduleExports = (phase) => {
   console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`);
   const env = {
     BUCKET_URL: (() => {
-      if (isDev) return "https://df236z5t5wm1k.cloudfront.net/public/";
+      if (isDev) return "https://d31ishmcm8lu09.cloudfront.net/public/";
       if (isProd) {
         return "https://df236z5t5wm1k.cloudfront.net/public/";
       }
@@ -111,7 +111,7 @@ const moduleExports = (phase) => {
     nextTranslate({
       env,
       images: {
-        domains: ["df236z5t5wm1k.cloudfront.net", "images.unsplash.com"],
+        domains: ["d31ishmcm8lu09.cloudfront.net", "images.unsplash.com"],
       },
       experimental: {
         headers() {
